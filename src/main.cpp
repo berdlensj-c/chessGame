@@ -4,7 +4,7 @@
 int main()
 {
     //constants for the board to be able to easily change the size and placement
-    const int squareX = 350;
+    const int squareX = 325;
     const int squareY = 50;
     const int squareSize = 80;
     int boardx=squareX;
@@ -38,7 +38,7 @@ int main()
             }
         }
 
-        window.clear(sf::Color::Black);
+        window.clear(sf::Color(100,100,100));
         
         //making and drawing the board 
         for(int i =0; i<8; i++){
@@ -50,11 +50,15 @@ int main()
 
                 if(i%2==0){    
                     if(j%2==0){
-                        board[i][j].setFillColor(sf::Color::Green);            
+                        board[i][j].setFillColor(sf::Color(205, 127, 50));            
+                    }else{
+                        board[i][j].setFillColor(sf::Color(218, 160, 109));
                     }
                 }else{
                     if(!(j%2==0)){
-                        board[i][j].setFillColor(sf::Color::Green);            
+                        board[i][j].setFillColor(sf::Color(205, 127, 50));            
+                    }else{
+                        board[i][j].setFillColor(sf::Color(218, 160, 109));
                     }
                 }
 
