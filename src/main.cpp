@@ -11,7 +11,15 @@ int main()
     int boardy=squareY;
     sf::RectangleShape board [8][8];
 
+    sf::Texture texture; 
+    if(!texture.loadFromFile("./assets/bB.png")){
+        std::cout<<"error"<<std::endl;
+    }
 
+    sf::Sprite sprite;
+    sprite.setTexture(texture);
+    sprite.setPosition(50,50);
+    sprite.setScale(10,10);
     sf::RenderWindow window(sf::VideoMode(1250, 800), "SFML Chess Window");
     
 
@@ -67,8 +75,7 @@ int main()
             }
             
         }
-
-        
+        window.draw(sprite);
         window.display();
     }
 
