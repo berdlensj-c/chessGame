@@ -3,32 +3,35 @@
 
 int main()
 {
-    std::cout << "Creating window..." << std::endl;
-    std::flush(std::cout);
+    //constants for the board to be able to easily change the size and placement
+    const int squareX = 350;
+    const int squareY = 50;
+    const int squareSize = 80;
+    int boardx=squareX;
+    int boardy=squareY;
+    sf::RectangleShape board [8][8];
+
 
     sf::RenderWindow window(sf::VideoMode(1250, 800), "SFML Chess Window");
+    
 
     if (!window.isOpen()) {
         std::cout << "Failed to create window!" << std::endl;
-        std::flush(std::cout);
         std::cin.get();
         return -1;
     }
 
     std::cout << "Window created successfully. Starting main loop..." << std::endl;
-    std::flush(std::cout);
+    
 
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
-    shape.setPosition({100.f, 100.f});
 
     sf::Event event;
     while (window.isOpen())
     {
+        //where all events will take place 
         while (window.pollEvent(event))
         {
-            std::cout << "Event received" << std::endl;
-
+          
             if (event.type == sf::Event::Closed) {
                 std::cout << "Close event received" << std::endl;
                 window.close();
@@ -36,7 +39,32 @@ int main()
         }
 
         window.clear(sf::Color::Black);
-        window.draw(shape);
+        
+        //making and drawing the board 
+        for(int i =0; i<8; i++){
+            boardx = squareX;
+            boardy = squareY + i * squareSize;
+            for(int j=0; j<8; j++){
+                board[i][j].setSize(sf::Vector2f(squareSize,squareSize));
+                board[i][j].setPosition(boardx,boardy);
+
+                if(i%2==0){    
+                    if(j%2==0){
+                        board[i][j].setFillColor(sf::Color::Green);            
+                    }
+                }else{
+                    if(!(j%2==0)){
+                        board[i][j].setFillColor(sf::Color::Green);            
+                    }
+                }
+
+                boardx += squareSize;
+                window.draw(board[i][j]);
+            }
+            
+        }
+
+        
         window.display();
     }
 
