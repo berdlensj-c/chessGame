@@ -12,7 +12,7 @@ int main()
     sf::RectangleShape board [8][8];
 
     sf::Texture texture; 
-    if(!texture.loadFromFile("./assets/bB.png")){
+    if(!texture.loadFromFile("../assets/bB.png")){
         std::cout<<"error"<<std::endl;
     }
 
